@@ -1,14 +1,18 @@
 t2 - parte I
+
 Suporte a caracteres unicode codificados em UTF8 nas strings. Estude o código fornecido, em str.h, str.c e str_tst.c. A implementação completa de str está em str-i.c. Caso encontre erros, por favor comunique.
 
 t2 - parte II
+
 Implemente uma lista de strings, com a interface definida em lstr.h. Use alocação contígua de memória, em que a lista tem um descritor (do tipo struct lstr) alocado dinamicamente quando a lista é criada e uma área de memória contígua também alocada dinamicamente onde são colocadas as strings (estruturas str) pertencentes à lista. A área para as strings deve ser realocada conforme necessidade. Pode não ter nada alocado para uma lista vazia, ou com alocação mínima. A alocação mínima deve comportar 8 strings. Em uma inserção, se a memória estiver cheia, a região deve ser realocada com tamanho 50% maior (se era 20, vira 30). Em uma remoção, se a região ocupada for inferior à metade da capacidade, deve ser realocada com tamanho 25% maior que a ocupação (se tinha espaço para 20 e ficou com 9, realoca para 11).
 
 t2 - parte III
+
 Reimplemente a lista de strings, com a mesma interface, usando lista encadeada. Cada string deve ser colocada em um nó da lista, que é alocado e liberado conforme a necessidade. O descritor da lista contém ponteiro(s) para algum(ns) desses nós. Um dos nós que deve ser apontado no descritor é o nó corrente. Pode ser usado encadeamento simples ou duplo, mas as operações de avanço e recuo não devem realizar um percurso a partir de uma extremidade da lista, mas a partir da posição corrente. A operação de posicionamento pode ser feita a partir da posição corrente ou a partir das pontas, dependendo da implementação (ou ainda otimizar e posicionar a partir do mais próximo).
 Compare o desempenho das duas implementações: faça um programa que cria uma lista com um milhão de itens (podem ser todos strings vazias) (ou menos se ficar muito demorado). Meça o tempo para inserir esses itens (meça com a inserção acontecendo no final da lista e com a inserção acontecendo no início). Meça o tempo para percorrer a lista toda, do início ao fim e vice-versa. Meça o tempo para acessar metade dos itens da lista, em posições aleatórias. Meça o desempenho de operações de alteração (faça tantas vezes: sorteia uma posição aleatória dentro da lista, sorteia se vai fazer uma inserção ou remoção nessa posição, e faz)
 
 t2 - parte IV
+
 Continue o editor de textos fornecido. O editor usa lista de string para representar as linhas do texto em memória. O código está em (p4)[Codigo/p4].
 
 Foram necessárias algumas alterações no código anterior:

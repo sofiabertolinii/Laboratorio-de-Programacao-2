@@ -1,0 +1,64 @@
+📌 Funções que podem precisar de alocação dinâmica
+
+Essas são as que criam, copiam ou alteram a string, logo em algum momento vão usar malloc, realloc ou free:
+
+cc_copia(cc cad)
+Cria uma cópia alterável → precisa de malloc para reservar espaço.
+
+cc_destroi(cc cad)
+Se a string for alterável (cap > 0), precisa dar free(cad.mem).
+
+cc_cat(cc *pcad, cc cadb)
+Pode precisar de realloc para expandir pcad e concatenar cadb.
+
+cc_catc(cc *pcad, char c)
+Igual ao anterior, mas só para 1 caractere → pode precisar de realloc.
+
+cc_insere(cc *pcad, int pos, cc cadb)
+Insere no meio → pode precisar de realloc se não houver espaço.
+
+cc_remove(cc *pcad, int pos, int tam)
+Remove caracteres → pode precisar de realloc se sobrar memória demais (para respeitar a regra de nunca ser < tam/3).
+
+cc_preenche(cc *pcad, int tam, char c)
+Preenche até tam caracteres → pode precisar aumentar a capacidade.
+
+cc_subst(cc *pcad, int pos, int tam, cc cadb, char preenche)
+Substitui por outra substring → pode precisar expandir ou reduzir memória.
+
+cc_strc(cc cad)
+Cria uma nova C-string (malloc com tam+1 bytes) → quem chamar deve dar free.
+
+cc_le_arquivo(cc nome)
+Lê conteúdo de um arquivo → precisa alocar espaço para armazenar.
+
+📌 Funções que NÃO precisam de alocação dinâmica
+
+Essas só acessam ou consultam a string, sem criar nem modificar:
+cc_cria
+cc_tam
+cc_mem
+cc_ch
+cc_sub
+cc_busca_c
+cc_busca_nc
+cc_busca_rc
+cc_busca_rnc
+cc_busca_s
+cc_igual
+cc_imprime
+cc_grava_arquivo
+
+
+
+o que falta fazer:
+
+cc_cat
+cc_catc
+cc_insere
+cc_remove
+cc_preenche
+cc_subst
+*cc_strc
+cc_le_arquivo
+cc_grava_arquivo

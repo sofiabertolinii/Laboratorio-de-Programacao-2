@@ -1,11 +1,66 @@
-O código anexo implementa um jogo de digitação de palavras, usando uma fila de prioridade. Para compilá-lo, necessita lstr, str, tela do trabalho anterior.
+# 📌 Jogo de Digitação com Fila de Prioridade (Heap)
 
-O arquivo fila-prio.h tem a interface de uma fila de prioridade. Nessa fila, os dados são colocados em qualquer ordem, e retirados por ordem de prioridade.
+Este projeto implementa um **jogo de digitação de palavras** utilizando uma **fila de prioridade genérica em C**.
 
-A fila é genérica, pode ser usada com qualquer tipo de dados. Para isso, na criação da fila (função fp_cria) deve ser informado o tamanho de um dado, em bytes. Na inserção (função fp_insere), informa-se um ponteiro para o dado a inserir, e a fila copia tantos bytes desse local para o interior da fila. Na remoção, informa-se um ponteiro para o local onde o dado removido deve ser colocado, e a fila copia os tantos bytes para essa posição. Como a fila não conhece o tipo dos dados, os ponteiros são tipados como void *, que é a forma de se codificar "ponteiro para qualquer coisa" em C.
+---
 
-A fila não conhece o tipo de dados com o qual ela está lidando, mas para poder escolher o mais prioritário, tem que ao menos poder comparar dois desses dados. Para isso, deve ser fornecido na criação da fila (função fp_cria) um ponteiro para uma função de comparação. Essa função deve receber como argumentos dois ponteiros para void, que apontam para dois dados na fila, e retornar um int que diz qual tem mais prioridade. O retorno é um número positivo se o primeiro dado tem maior prioridade que o segundo, negativo se o primeiro for menos prioritário que o segundo e zero se ambos tiverem a mesma prioridade. O tipo comparador_t representa o tipo dessa função, e um ponteiro para uma função desse tipo deve ser fornecido na criação. Em C, se f é uma função, &f ou simplesmente f (sem parênteses) representa um ponteiro para essa função.
+## 🧩 Dependências
 
-O arquivo fila-prio.c implementa a fila de prioridade em uma lista, usando um alocação contígua de memória. Uma inserção na fila insere no final da lista e uma remoção faz uma busca entre todos os elementos da lista para encontrar o mais prioritário, usando a função de comparação. Em uma remoção, o dado no final da lista é deslocado para ocupar o local do dado removido, para manter a lista contígua.
+Para compilar o projeto, é necessário incluir os seguintes módulos do trabalho anterior:
 
-Você deve reimplementar a fila de prioridade como uma árvore heap, mantendo a mesma interface (fila-prio.c deve ser alterado, fila-prio.h não).
+- `lstr`
+- `str`
+- `tela`
+
+---
+
+## ⚙️ Estrutura da Fila de Prioridade
+
+A interface da fila de prioridade está definida no arquivo:
+
+- `fila-prio.h`
+
+Nesta estrutura, os elementos são inseridos em qualquer ordem, mas removidos sempre de acordo com a **prioridade definida pelo usuário**.
+
+---
+
+## 🧠 Fila Genérica (void*)
+
+A fila de prioridade é **genérica**, podendo armazenar qualquer tipo de dado.
+
+Para isso:
+
+- Na criação da fila (`fp_cria`), deve-se informar:
+  - O tamanho (em bytes) de cada elemento
+  - Uma função de comparação entre elementos
+
+- Na inserção (`fp_insere`):
+  - É passado um ponteiro (`void *`) para o dado
+  - A fila copia os bytes desse endereço para sua estrutura interna
+
+- Na remoção (`fp_remover`):
+  - É passado um ponteiro de destino
+  - A fila copia o elemento removido para esse endereço
+
+Como o tipo dos dados é desconhecido, utiliza-se `void *`, que representa um ponteiro genérico em C.
+
+---
+
+## ⚖️ Função de Comparação
+
+Para definir a prioridade dos elementos, a fila recebe uma função comparadora definida pelo usuário.
+
+Essa função deve:
+
+- Receber dois ponteiros `void *`
+- Retornar:
+  - `> 0` → primeiro elemento tem maior prioridade
+  - `< 0` → segundo elemento tem maior prioridade
+  - `0` → ambos possuem a mesma prioridade
+
+O tipo dessa função é definido como `comparador_t`.
+
+Exemplo de uso:
+
+```c
+fp_cria(tamanho, &funcao_comparacao);

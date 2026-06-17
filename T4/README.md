@@ -1,13 +1,23 @@
-Faça uma implementação de grafos, implementando em grafo.c a interface definida em grafo.h. Implemente também os algoritmos de detecção de ciclos e ordem topográfica que estão descritos. Implemente também lista e fila, de acordo com os respectivos .h.
+## 🧠 Descrição do Trabalho
 
-Os demais arquivos fornecidos implementam um jogo do dinossauro, fortemente baseado do que é implementado no navegador chrome. Esse jogo pode ser jogado manualmente ou por uma rede neural, que é implementada em rede.c e rede.h, usando o grafo que você deve implementar. Uma rede é fornecida, no arquivo rede-exemplo.
+Este trabalho consiste na implementação de estruturas de grafos em linguagem C, seguindo a interface definida no arquivo `grafo.h`. A implementação inclui também os principais algoritmos associados a grafos, como detecção de ciclos e ordenação topológica, conforme especificado na interface fornecida.
 
-Tem também um programa para treinar uma rede para jogar esse jogo.
+Além da estrutura de grafo, também foram implementadas estruturas auxiliares fundamentais, como listas e filas, de acordo com suas respectivas interfaces, sendo utilizadas como suporte para os algoritmos desenvolvidos.
 
-O arquivo compila tem os comandos de compilação para gerar esses dois programas, usando o compilador gcc.
+O projeto é integrado a um sistema maior que simula o jogo do dinossauro, inspirado no jogo presente no navegador Google Chrome. Esse jogo pode ser executado de forma manual pelo usuário ou automaticamente por meio de uma rede neural.
 
-O programa main joga o jogo. Se for executado com ./main, joga manualmente, comandado pelas teclas espaço ou seta para cima e seta para baixo. Tem ainda q para terminar o programa quando ele estiver parado.
+A rede neural é implementada nos arquivos `rede.c` e `rede.h`, utilizando o grafo desenvolvido neste trabalho como estrutura base para suas operações. Também é fornecido um arquivo de exemplo de rede (`rede-exemplo`).
 
-Se o programa for executado com ./main rede-exemplo, vai executar controlado pela rede nesse arquivo.
+Além disso, o projeto inclui um programa de treinamento de redes neurais, que gera e evolui redes de forma iterativa. As redes são avaliadas com base no desempenho no jogo (executado sem interface gráfica), e as melhores são selecionadas para formar novas gerações. A melhor rede de cada geração é salva em arquivos no diretório `G/`.
 
-O programa treina faz o treinamento de redes, partindo de uma geração de redes vazias alteradas aleatoriamente. Essas redes são usadas para executar o jogo (sem tela), e as que obtiverem melhor pontuação são usadas para produzir uma nova geração de redes. A melhor de cada geração é gravada em um arquivo no diretório G (que deve ser criado).
+O projeto inclui ainda um script de compilação (`compila`) responsável por gerar os executáveis dos programas `main` e `treina` utilizando o compilador GCC.
+
+### Execução do programa
+
+- `./main` → executa o jogo no modo manual (controle por teclado)
+  - Controles: espaço ou seta para cima (pular), seta para baixo (agachar)
+  - Tecla `q` encerra o programa quando o jogo estiver parado
+
+- `./main rede-exemplo` → executa o jogo controlado por uma rede neural
+
+- `./treina` → executa o processo de treinamento das redes neurais
